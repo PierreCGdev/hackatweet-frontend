@@ -4,13 +4,13 @@ import Head from "next/head";
 function Index() {
   return (
     <>
-      <head>
+      <Head>
         <title>Home Hackatweet</title>
         <meta
           name="description"
           content="Hackatweet vous permet de partager vos idées plus ou moins toxique au monde entier"
         ></meta>
-      </head>
+      </Head>
       <Home />
     </>
   );
