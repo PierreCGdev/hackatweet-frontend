@@ -7,7 +7,7 @@
     display: flex;
 }
 
-.content {
+.container {
     flex-direction: column;
     flex-wrap: wrap;
     margin: 2em;
