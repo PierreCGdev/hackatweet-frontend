@@ -14,11 +14,11 @@ function Home() {
           alt="logo twitter"
           className={styles.logo}
         />
-        <h1>See what's happening</h1>
-        <h2>Join Hackatweet today.</h2>
-        <button>Signup</button>
-        <span>Already have an account?</span>
-        <button>Signin</button>
+        <h1 style={{ fontSize: "70px" }}>See what's happening</h1>
+        <h2 style={{ fontSize: "32px" }}>Join Hackatweet today.</h2>
+        <button className={styles.btn_signup}>Signup</button>
+        <p>Already have an account?</p>
+        <button className={styles.btn_signin}>Signin</button>
       </div>
     </div>
   );
