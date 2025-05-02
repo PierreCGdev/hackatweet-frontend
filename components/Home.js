@@ -1,4 +1,6 @@
 import styles from "../styles/Home.module.css";
+import LastTweets from "./LastTweets";
+import Trends from "./Trends";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -35,13 +37,12 @@ function Home() {
       </div>
 
       <div className={styles.middleContent}>
-        <div
-          style={{ borderBottom: "solid 1px #697381", paddingBottom: "30px" }}
-        >
+        <div style={{ paddingBottom: "30px" }}>
           <div>
             <h3 style={{ paddingLeft: "15px" }}>Home</h3>
             <div className={styles.newTweetContainer}>
               <textarea
+                maxlength="280"
                 className={`${
                   inputText ? styles.tweetInput : styles.tweetPlaceholder
                 }`}
@@ -71,8 +72,11 @@ function Home() {
             </div>
           </div>
         </div>
+        <LastTweets />
       </div>
-      <div className={styles.rightContent}>right</div>
+      <div className={styles.rightContent}>
+        <Trends />
+      </div>
     </div>
   );
 }
