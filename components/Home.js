@@ -1,48 +1,27 @@
 import styles from "../styles/Home.module.css";
 import LastTweets from "./LastTweets";
 import Trends from "./Trends";
+import LeftContent from "./LeftContent";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import { useSelector } from "react-redux";
 
 function Home() {
   const [inputText, setInputText] = useState("");
   const [stringLength, setStringLength] = useState(0);
-
+  const user = useSelector((state) => state.user.value);
   return (
     <div className={styles.main}>
-      <div className={styles.leftContent}>
-        <img
-          src="/tweeter-logo.png"
-          alt="logo twitter"
-          className={styles.logo}
-        />
-        <div>
-          <div className={styles.leftBottom}>
-            <img src="/egg.jpg" alt="logo twitter" className={styles.icon} />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginLeft: "10px",
-                alignItems: "flex-start",
-                justifyContent: "space-around",
-              }}
-            >
-              <p className={styles.firstnameText}>name</p>
-              <p className={styles.usernameText}>username</p>
-            </div>
-          </div>
-          <button className={styles.logoutButton}>Logout</button>
-        </div>
-      </div>
-
+      <LeftContent />
       <div className={styles.middleContent}>
         <div style={{ paddingBottom: "30px" }}>
           <div>
             <h3 style={{ paddingLeft: "15px" }}>Home</h3>
             <div className={styles.newTweetContainer}>
               <textarea
-                maxlength="280"
+                maxLength="280"
                 className={`${
                   inputText ? styles.tweetInput : styles.tweetPlaceholder
                 }`}
@@ -74,9 +53,8 @@ function Home() {
         </div>
         <LastTweets />
       </div>
-      <div className={styles.rightContent}>
-        <Trends />
-      </div>
+
+      <Trends />
     </div>
   );
 }

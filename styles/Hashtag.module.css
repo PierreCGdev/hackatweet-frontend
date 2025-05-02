@@ -1,0 +1,85 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #0F1419;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  
+  .middleContent {
+    grid-column-start: 4;
+    grid-column-end: 10;
+    width: 100%;
+    max-height: 100vh;
+    flex-direction: column;
+    border-left: solid 1px #697381;
+    border-right: solid 1px #697381;
+    width: 100%;
+    color: white;
+    /* padding: 10px 30px ; */
+  }
+  
+  .newTweetContainer{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .firstnameText{
+    font-weight: 700;
+    color: white;
+  }
+  
+  .usernameText{
+    font-weight: 300;  
+    color: #697381;
+
+  }
+
+  .searchInput{
+    all: unset;
+    color: white;
+    border-radius: 25px;
+    background-color: #1B232C;
+    width: 100%;
+    padding: 10px 15px;
+  }
+  
+  .tweetPlaceholder{
+    all: unset;
+    color: #697381;
+    border-bottom: solid 1px #697381;
+    width: 100%;
+    resize: vertical
+  }
+  
+  .tweetInput{
+    all: unset;
+    color: white;
+    border-bottom: solid 1px #697381;
+    width: 100%;
+    resize: vertical
+  }
+  
+  .btn_signup {
+    background-color: #1d9bf0;
+    color: white;
+    padding: 7px 25px 7px;
+    border: none;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  .btn_signup:hover {
+    opacity: 75%;
+  }
+  
+  
+  
+  

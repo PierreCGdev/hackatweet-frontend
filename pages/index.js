@@ -1,8 +1,9 @@
 import Home from "../components/Home";
 import Login from "../components/Login";
+import Hashtag from "../components/Hashtag";
 
 function Index() {
-  return <Home />;
+  return <Login />;
 }
 
 export default Index;

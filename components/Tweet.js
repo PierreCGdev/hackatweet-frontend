@@ -2,19 +2,29 @@ import styles from "../styles/Tweet.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setHashtag } from "../reducers/hashtags";
 
-function Tweet({ firstname, username, content, date, like, id }) {
+function Tweet(props) {
+  const dispatch = useDispatch();
   const [islike, setIslike] = useState(false);
-  const [likeCount, setLikeCount] = useState(like);
+  const [likeCount, setLikeCount] = useState(props.like);
 
-  const contentArray = content.split(" ");
+  const contentArray = props.content.split(" ");
+  //prévoir changement de pages au click
   const hastageToUpper = (
     <span>
-      {contentArray.map((e) =>
+      {contentArray.map((e, index) =>
         e.match(/#[\wÀ-ÿ]+/g) ? (
-          <a className={styles.aLink}>{e + " "}</a>
+          <a
+            key={index}
+            className={styles.aLink}
+            onClick={() => dispatch(setHashtag(e))}
+          >
+            {e + " "}
+          </a>
         ) : (
-          <span>{e + " "} </span>
+          <span key={index}>{e + " "} </span>
         )
       )}
     </span>
@@ -41,8 +51,10 @@ function Tweet({ firstname, username, content, date, like, id }) {
         }}
       >
         <img src="/egg.jpg" alt="logo twitter" className={styles.iconUser} />
-        <span className={styles.firstnameText}>{firstname}</span>
-        <span className={styles.usernameText}>{`#${username} - ${date}`}</span>
+        <span className={styles.firstnameText}>{props.firstname}</span>
+        <span
+          className={styles.usernameText}
+        >{`#${props.username} - ${props.date}`}</span>
       </div>
       <p style={{ margin: "15px 0px" }}>{hastageToUpper}</p>
       <span>

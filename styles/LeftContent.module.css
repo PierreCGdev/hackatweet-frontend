@@ -1,0 +1,69 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #0F1419;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  
+  .leftContent {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 100%;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 50px;
+  }
+  
+  .logo {
+    width: 50px;
+    height: auto;
+    transform: scale(-1, -1);
+    cursor: pointer;
+  
+  }
+  .icon{  
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .leftBottom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .firstnameText{
+    font-weight: 700;
+    color: white;
+  }
+  
+  .usernameText{
+    font-weight: 300;  
+    color: #697381;
+  }
+  
+  .logoutButton{
+    all: unset;
+    border: solid 1px white;
+    background-color: #0F1419;
+    color: white;
+    padding: 5px 25px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .logoutButton:hover{
+  background-color: #697381;
+  }
+  
+  
+  
+  
+  

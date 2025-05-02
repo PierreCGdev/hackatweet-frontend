@@ -1,6 +1,18 @@
-.leftContainer{
-    width: 100%;
+.rightContent {
+    grid-column-start: 10;
+    grid-column-end: 14;
+    max-width: 100%;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+.mainContainer{
+    max-width: 100%;
+    max-height: 100%;
     color: white;
+
 }
 
 .trendList{
@@ -9,6 +21,9 @@
     margin: 15px;
     padding: 2px 2px;
     width: 95%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 90%;
 }
 
 .firstnameText{
@@ -16,6 +31,7 @@
     font-weight: 700;
     color: white;
     font-size: 1 em;
+    cursor: pointer;
   }
   
 .usernameText{
