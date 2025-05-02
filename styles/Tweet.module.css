@@ -1,0 +1,33 @@
+.tweetContainer{
+    border-top: solid 1px #697381;
+    padding: 20px 15px;
+}
+
+.firstnameText{
+    /* margin-left: 15px; */
+    font-weight: 700;
+    color: white;
+  }
+  
+.usernameText{
+    /* margin-left: 15px; */
+    font-weight: 300;  
+    color: #697381;
+}
+
+.iconUser{  
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+.iconButton{
+    cursor: pointer;
+}
+
+.aLink{
+    color: #1d9bf0;
+    cursor: pointer;
+    font-weight: 700;
+}
