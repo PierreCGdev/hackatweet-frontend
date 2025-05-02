@@ -2,11 +2,12 @@ import styles from "../styles/Tweet.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setHashtag } from "../reducers/hashtags";
 
 function Tweet(props) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
   const [islike, setIslike] = useState(false);
   const [likeCount, setLikeCount] = useState(props.like);
 
@@ -40,6 +41,12 @@ function Tweet(props) {
   };
 
   const styleLike = islike ? { color: "#F71672" } : {};
+  //prévoir handle suppression du tweet
+  const trashIcon = props.username === user.username && (
+    <a className={styles.iconButton}>
+      <FontAwesomeIcon style={{ marginLeft: "10px" }} icon={faTrash} />
+    </a>
+  );
   return (
     <div className={styles.tweetContainer}>
       <div
@@ -62,9 +69,7 @@ function Tweet(props) {
           <FontAwesomeIcon style={styleLike} icon={faHeart} />
         </a>
         <span style={{ ...styleLike, marginLeft: "10px" }}>{likeCount}</span>
-        <a className={styles.iconButton}>
-          <FontAwesomeIcon style={{ marginLeft: "10px" }} icon={faTrash} />
-        </a>
+        {trashIcon}
       </span>
     </div>
   );
