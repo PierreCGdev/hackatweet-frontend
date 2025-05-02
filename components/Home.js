@@ -1,13 +1,25 @@
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 function Home() {
   return (
     <div className={styles.main}>
-      <img
-        src="/background.png"
-        alt="background-kackatweet"
-        className={styles.bg}
-      />
+      <div className={styles.leftContent}>
+        <img
+          src="/tweeter-logo.png"
+          alt="logo twitter"
+          className={(styles.logo, styles.egg)}
+        />
+        <div className={styles.leftBottom}>
+          <div>
+            <img src="/egg.jpg" alt="logo twitter" className={styles.logo} />
+            {/* <p className={styles.firstnameText}>name</p>
+            <p className={styles.usernameText}>username</p> */}
+          </div>
+          <button>Logout</button>
+        </div>
+      </div>
+
       <div className={styles.content}>
         <img
           src="/tweeter-logo.png"
@@ -20,6 +32,7 @@ function Home() {
         <span>Already have an account?</span>
         <button>Signin</button>
       </div>
+      <div className={styles.rightContent}>right</div>
     </div>
   );
 }
