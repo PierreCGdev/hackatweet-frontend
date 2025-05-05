@@ -11,10 +11,13 @@ export const tweetsSlice = createSlice({
   initialState,
   reducers: {
     setTweets: (state, action) => {
-      state.value.push(action.payload);
+      state.value = action.payload;
+    },
+    removeTweets: (state, action) => {
+      state.value = [];
     },
   },
 });
 
-export const { login, logout } = tweetsSlice.actions;
-export default userSlice.reducer;
+export const { setTweets, removeTweets } = tweetsSlice.actions;
+export default tweetsSlice.reducer;

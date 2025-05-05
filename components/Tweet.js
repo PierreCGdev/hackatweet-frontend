@@ -12,7 +12,7 @@ function Tweet(props) {
   const hashtags = useSelector((state) => state.hashtags.value);
   const user = useSelector((state) => state.user.value);
   const [islike, setIslike] = useState(false);
-  const [likeCount, setLikeCount] = useState(props.like);
+  const [likeCount, setLikeCount] = useState(props.likes);
 
   const contentArray = props.content.split(" ");
   //prévoir changement de pages au click

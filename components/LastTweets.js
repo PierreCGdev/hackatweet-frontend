@@ -1,14 +1,24 @@
 import Tweet from "./Tweet";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setTweets } from "../reducers/tweets";
 function LastTweets() {
+  const dispatch = useDispatch();
   const hashtags = useSelector((state) => state.hashtags.value);
+  const tweetse = useSelector((state) => state.tweets.value);
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
-    fetch("http://localhost:3000/tweets/getTweets")
+    fetch("https://hackatweet-backend-two-gamma.vercel.app/tweets/getTweets")
       .then((response) => response.json())
       .then((data) => {
         if (data) {
+          dispatch(
+            setTweets({
+              data,
+            })
+          );
+          console.log(data.tweets);
         } else {
           setErrorMessage(data.error);
         }
@@ -21,7 +31,7 @@ function LastTweets() {
       username: "AntoineLeProf",
       content: "ok c'est genial #super",
       date: "5 hours",
-      like: 0,
+      likes: 0,
       hastag: ["#super"],
     },
     {
@@ -29,7 +39,7 @@ function LastTweets() {
       username: "AntoineLeProf",
       content: "ok c'est #tropBien 🙂​ first",
       date: "5 hours",
-      like: 0,
+      likes: 0,
       hastag: ["#tropBien"],
     },
     {
@@ -37,7 +47,7 @@ function LastTweets() {
       username: "AntoineLeProffdsfsd",
       content: "ok c'est #tropBien 🙂​ first #super",
       date: "5 hours",
-      like: 0,
+      likes: 0,
       hastag: ["#tropBien", "#super"],
     },
   ];

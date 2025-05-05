@@ -1,7 +1,7 @@
 import Login from "../components/Login.js";
 
-function Index() {
+function login() {
   return <Login />;
 }
 
-export default Index;
+export default login;

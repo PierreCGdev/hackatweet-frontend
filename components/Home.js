@@ -15,7 +15,7 @@ function Home() {
 
   const handleNewTweet = () => {
     console.log(user.id);
-    fetch("http://localhost:3000/tweets/postTweet", {
+    fetch("https://hackatweet-backend-two-gamma.vercel.app/tweets/postTweet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
