@@ -22,12 +22,13 @@ function SignIn({ handleClickShowSignin }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
-          console.log(data);
           dispatch(
             login({
               firstname: data.firstname,
               username: username,
               token: data.token,
+              id: data.id,
+              tweet_id: data.tweet_id,
             })
           );
           router.push("/home");

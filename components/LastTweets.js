@@ -1,7 +1,19 @@
 import Tweet from "./Tweet";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 function LastTweets() {
   const hashtags = useSelector((state) => state.hashtags.value);
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    fetch("http://localhost:3000/tweets/getTweets")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+        } else {
+          setErrorMessage(data.error);
+        }
+      });
+  }, []);
   // à remplacer par un fetch des X derniers tweets peut être prévoir un scrolling
   const tweets = [
     {

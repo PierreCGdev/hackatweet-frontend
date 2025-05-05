@@ -28,6 +28,8 @@ function SignUp({ handleClickShowSignup }) {
               username: username,
               firstname: firstname,
               token: data.token,
+              id: data.id,
+              tweet_id: data.tweet_id,
             })
           );
           router.push("/home");

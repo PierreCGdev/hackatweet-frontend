@@ -4,17 +4,36 @@ import Trends from "./Trends";
 import LeftContent from "./LeftContent";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
   const router = useRouter();
   const user = useSelector((state) => state.user.value);
-  if (!user.token) {
-    router.push("/login");
-  }
   const [inputText, setInputText] = useState("");
   const [stringLength, setStringLength] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleNewTweet = () => {
+    console.log(user.id);
+    fetch("http://localhost:3000/tweets/postTweet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: user.username,
+        message: inputText,
+        user_id: user.id,
+        like: 0,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result) {
+          console.log(data);
+        } else {
+          setErrorMessage(data.error);
+        }
+      });
+  };
 
   return (
     <div className={styles.main}>
@@ -50,7 +69,9 @@ function Home() {
                 <p style={{ marginRight: "10px" }}>
                   <span>{stringLength}</span>/280
                 </p>
-                <button className={styles.btn_signup}>Tweet</button>
+                <button className={styles.btn_signup} onClick={handleNewTweet}>
+                  Tweet
+                </button>
               </div>
             </div>
           </div>
