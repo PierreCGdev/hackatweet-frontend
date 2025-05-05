@@ -22,10 +22,11 @@ function SignIn({ handleClickShowSignin }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
+          console.log(data);
           dispatch(
             login({
-              username: data.username,
               firstname: data.firstname,
+              username: username,
               token: data.token,
             })
           );

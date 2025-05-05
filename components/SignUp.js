@@ -25,8 +25,8 @@ function SignUp({ handleClickShowSignup }) {
         if (data.result) {
           dispatch(
             login({
-              username: data.username,
-              firstname: data.firstname,
+              username: username,
+              firstname: firstname,
               token: data.token,
             })
           );

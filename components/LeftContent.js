@@ -1,6 +1,6 @@
 import styles from "../styles/LeftContent.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../reducers/user";
+import { logout } from "../reducers/user.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -33,12 +33,8 @@ function leftContent() {
               justifyContent: "space-around",
             }}
           >
-            <p className={styles.firstnameText}>
-              {user.firstname + "placeholder"}
-            </p>
-            <p className={styles.usernameText}>
-              {user.username + "placeholder"}
-            </p>
+            <p className={styles.firstnameText}>{user.firstname}</p>
+            <p className={styles.usernameText}>{user.username}</p>
           </div>
         </div>
         <button className={styles.logoutButton} onClick={handleLogout}>
