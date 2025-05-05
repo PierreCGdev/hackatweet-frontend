@@ -1,5 +1,7 @@
 import Tweet from "./Tweet";
-function LastTweets({ hastag }) {
+import { useSelector } from "react-redux";
+function LastTweets() {
+  const hashtags = useSelector((state) => state.hashtags.value);
   // à remplacer par un fetch des X derniers tweets peut être prévoir un scrolling
   const tweets = [
     {
@@ -30,10 +32,10 @@ function LastTweets({ hastag }) {
 
   //permet de filter ou nom avec un prop hastag
   let tweetList;
-  if (hastag) {
+  if (hashtags) {
     const filterTweets = tweets.filter((tweet) =>
       tweet.hastag.some((tag) =>
-        tag.toLowerCase().includes(hastag.toLowerCase())
+        tag.toLowerCase().includes(hashtags.toLowerCase())
       )
     );
     tweetList = filterTweets.map((item, index) => (

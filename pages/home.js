@@ -1,8 +1,7 @@
 import Home from "../components/Home";
 import Head from "next/head";
-import Hashtag from "../components/Hashtag";
 
-function Index() {
+function home() {
   return (
     <>
       <Head>
@@ -13,4 +12,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default home;

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Hashtag from "../components/Hashtag";
 
-function Index() {
+function hashtag() {
   return (
     <>
       <Head>
@@ -12,4 +12,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default hashtag;

@@ -4,9 +4,12 @@ import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHashtag } from "../reducers/hashtags";
+import { useRouter } from "next/router";
 
 function Tweet(props) {
+  const router = useRouter();
   const dispatch = useDispatch();
+  const hashtags = useSelector((state) => state.hashtags.value);
   const user = useSelector((state) => state.user.value);
   const [islike, setIslike] = useState(false);
   const [likeCount, setLikeCount] = useState(props.like);
@@ -20,7 +23,10 @@ function Tweet(props) {
           <a
             key={index}
             className={styles.aLink}
-            onClick={() => dispatch(setHashtag(e))}
+            onClick={() => {
+              dispatch(setHashtag(e));
+              router.push(`/hashtag/${e.slice(1)}`);
+            }}
           >
             {e + " "}
           </a>

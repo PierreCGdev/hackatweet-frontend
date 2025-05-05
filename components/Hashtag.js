@@ -3,11 +3,12 @@ import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import LeftContent from "./LeftContent";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setHashtag } from "../reducers/hashtags";
 
 function Home() {
   const hashtags = useSelector((state) => state.hashtags.value);
-  const [inputText, setInputText] = useState(hashtags);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.main}>
@@ -21,14 +22,14 @@ function Home() {
                 className={styles.searchInput}
                 onChange={(e) => {
                   const newValue = e.target.value;
-                  setInputText(newValue);
+                  dispatch(setHashtag(newValue));
                 }}
-                value={inputText}
+                value={hashtags}
               ></input>
             </div>
           </div>
         </div>
-        <LastTweets hastag={inputText} />
+        <LastTweets />
       </div>
       <Trends />
     </div>
