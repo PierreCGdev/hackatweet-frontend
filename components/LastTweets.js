@@ -5,61 +5,34 @@ import { setTweets } from "../reducers/tweets";
 function LastTweets() {
   const dispatch = useDispatch();
   const hashtag = useSelector((state) => state.hashtag.value);
-  const tweetse = useSelector((state) => state.tweets.value);
+  const tweets = useSelector((state) => state.tweets.value);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    fetch("https://hackatweet-backend-two-gamma.vercel.app/tweets/getTweets")
+    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/getTweets")
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
-          dispatch(
-            setTweets({
-              data,
-            })
-          );
+        if (data.result) {
+          console.log("Tweets", data.tweets);
+          dispatch(setTweets(data.tweets));
         } else {
           setErrorMessage(data.error);
         }
       });
   }, []);
   // à remplacer par un fetch des X derniers tweets peut être prévoir un scrolling
-  const tweets = [
-    {
-      firstname: "antoine",
-      username: "AntoineLeProf",
-      content: "ok c'est genial #super",
-      date: "5 hours",
-      likes: 0,
-      hastag: ["#super"],
-    },
-    {
-      firstname: "antoine",
-      username: "AntoineLeProf",
-      content: "ok c'est #tropBien 🙂​ first",
-      date: "5 hours",
-      likes: 0,
-      hastag: ["#tropBien"],
-    },
-    {
-      firstname: "antoinefdsf",
-      username: "AntoineLeProffdsfsd",
-      content: "ok c'est #tropBien 🙂​ first #super",
-      date: "5 hours",
-      likes: 0,
-      hastag: ["#tropBien", "#super"],
-    },
-  ];
 
-  //permet de filter ou nom avec un prop hastag
+  //permet de filter ou nom avec un prop hashtag
   let tweetList;
   if (hashtag) {
-    const filterTweets = tweets.filter((tweet) =>
-      tweet.hastag.some((tag) =>
-        tag.toLowerCase().includes(hashtag.toLowerCase())
-      )
+    const filteredTweets = tweets.filter(
+      (tweet) =>
+        Array.isArray(tweet.hashtag) &&
+        tweet.hashtag.some((tag) =>
+          tag.toLowerCase().includes(hashtag.toLowerCase())
+        )
     );
-    tweetList = filterTweets.map((item, index) => (
+    tweetList = filteredTweets.map((item, index) => (
       <Tweet {...item} key={index} />
     ));
   } else {

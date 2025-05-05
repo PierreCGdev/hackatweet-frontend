@@ -4,6 +4,7 @@ import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHashtag } from "../reducers/hashtags.js";
+import { removeTweets } from "../reducers/tweets.js";
 import { useRouter } from "next/router";
 
 function Tweet(props) {
@@ -14,7 +15,22 @@ function Tweet(props) {
   const [islike, setIslike] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes);
 
-  const contentArray = props.content.split(" ");
+  const handleDelete = () => {
+    fetch(
+      `https://hackatweet-backend-dusky.vercel.app/tweets/deleteTweet/${props._id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          dispatch(removeTweets(props._id));
+        }
+      });
+  };
+
+  const contentArray = props.message.split(" ");
   //prévoir changement de pages au click
   const hastageToUpper = (
     <span>
@@ -48,9 +64,13 @@ function Tweet(props) {
 
   const styleLike = islike ? { color: "#F71672" } : {};
   //prévoir handle suppression du tweet
-  const trashIcon = props.username === user.username && (
+  const trashIcon = props.user_id?.username === user.username && (
     <a className={styles.iconButton}>
-      <FontAwesomeIcon style={{ marginLeft: "10px" }} icon={faTrash} />
+      <FontAwesomeIcon
+        style={{ marginLeft: "10px" }}
+        icon={faTrash}
+        onClick={handleDelete}
+      />
     </a>
   );
   return (
@@ -64,11 +84,11 @@ function Tweet(props) {
         }}
       >
         <img src="/egg.jpg" alt="logo twitter" className={styles.iconUser} />
-        <span className={styles.firstnameText}>{props.firstname}</span>
+        <span className={styles.firstnameText}>{props.user_id?.firstname}</span>
         <span
           className={styles.usernameText}
           style={{ marginLeft: "5px" }}
-        >{`#${props.username} • ${props.date}`}</span>
+        >{`@${props.user_id?.username} • ${props.countdown}`}</span>
       </div>
       <p style={{ margin: "15px 0px" }}>{hastageToUpper}</p>
       <span>

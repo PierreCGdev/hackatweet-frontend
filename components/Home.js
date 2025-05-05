@@ -16,7 +16,7 @@ function Home() {
   const handleNewTweet = () => {
     const textHastag = inputText.match(/#[\wÀ-ÿ]+/g);
 
-    fetch("https://hackatweet-backend-two-gamma.vercel.app/tweets/postTweet", {
+    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/postTweet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
