@@ -2,11 +2,17 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/SignUp.module.css";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/user.js";
+import { useRouter } from "next/router";
 
 function SignUp({ handleClickShowSignup }) {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [firstname, setFirstName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUp = () => {
     fetch("http://localhost:3000/users/signup", {
@@ -16,16 +22,29 @@ function SignUp({ handleClickShowSignup }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        data.result
-          ? { result: true, token: data.token }
-          : { result: false, error: data.error };
+        if (data.result) {
+          dispatch(
+            login({
+              username: data.username,
+              firstname: data.firstname,
+              token: data.token,
+            })
+          );
+          router.push("/home");
+        } else {
+          console.log(data.error);
+          setErrorMessage(data.error);
+        }
       });
   };
 
   return (
     <div>
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay}>
+        <div className={styles.errorMessage}>
+          <p>{errorMessage}</p>
+        </div>
+      </div>
       <div className={styles.form}>
         <div className={styles.x_container}>
           <FontAwesomeIcon
@@ -64,7 +83,7 @@ function SignUp({ handleClickShowSignup }) {
           className={styles.btn_signup}
           onClick={() => {
             handleSignUp();
-            handleClickShowSignup();
+            // handleClickShowSignup();
           }}
         >
           Signup

@@ -37,10 +37,8 @@ function Home() {
         <p>Already have an account?</p>
         <button className={styles.btn_signin} onClick={handleClickShowSignin}>
           Signin
-          {showSignIn && (
-            <SignIn handleClickShowSignin={handleClickShowSignin} />
-          )}
         </button>
+        {showSignIn && <SignIn handleClickShowSignin={handleClickShowSignin} />}
       </div>
     </div>
   );

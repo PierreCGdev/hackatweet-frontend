@@ -1,6 +1,6 @@
 import styles from "../styles/Trends.module.css";
 import { useDispatch } from "react-redux";
-import { setHashtag } from "../reducers/hashtags";
+import { setHashtag } from "../reducers/hashtags.js";
 import { useRouter } from "next/router";
 
 function Trends() {

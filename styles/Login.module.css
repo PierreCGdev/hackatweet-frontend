@@ -5,6 +5,7 @@
     width: 100vw;
     background-color: #0F1419;
     display: flex;
+    z-index: 0;
 }
 
 .container {

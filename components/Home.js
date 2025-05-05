@@ -3,15 +3,19 @@ import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import LeftContent from "./LeftContent";
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useSelector } from "react-redux";
 
 function Home() {
+  const router = useRouter();
+  const user = useSelector((state) => state.user.value);
+  if (!user.token) {
+    router.push("/login");
+  }
   const [inputText, setInputText] = useState("");
   const [stringLength, setStringLength] = useState(0);
-  const user = useSelector((state) => state.user.value);
+
   return (
     <div className={styles.main}>
       <LeftContent />

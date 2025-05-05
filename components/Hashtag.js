@@ -2,11 +2,16 @@ import styles from "../styles/Hashtag.module.css";
 import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import LeftContent from "./LeftContent";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setHashtag } from "../reducers/hashtags";
+import { setHashtag } from "../reducers/hashtags.js";
+import { useRouter } from "next/router";
 
 function Home() {
+  const router = useRouter();
+  const user = useSelector((state) => state.user.value);
+  if (!user.token) {
+    router.push("/login");
+  }
   const hashtags = useSelector((state) => state.hashtags.value);
   const dispatch = useDispatch();
 

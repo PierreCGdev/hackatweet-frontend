@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setHashtag } from "../reducers/hashtags";
+import { setHashtag } from "../reducers/hashtags.js";
 import { useRouter } from "next/router";
 
 function Tweet(props) {

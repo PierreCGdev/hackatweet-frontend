@@ -2,12 +2,15 @@ import styles from "../styles/LeftContent.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducers/user";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function leftContent() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const handleLogout = () => {
     dispatch(logout());
+    router.push("/login");
   };
   return (
     <div className={styles.leftContent}>
