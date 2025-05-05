@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const tweetsSlice = createSlice({
-  name: "user",
+  name: "tweets",
   initialState,
   reducers: {
     setTweets: (state, action) => {

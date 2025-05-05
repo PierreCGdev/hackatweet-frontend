@@ -8,10 +8,10 @@ import storage from "redux-persist/lib/storage";
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "../reducers/user.js";
-import hashtags from "../reducers/hashtags.js";
+import hashtag from "../reducers/hashtags.js";
 import tweets from "../reducers/tweets.js";
 
-const reducers = combineReducers({ user, hashtags, tweets });
+const reducers = combineReducers({ user, hashtag, tweets });
 const persistConfig = { key: "HackaTweet", storage };
 
 const store = configureStore({

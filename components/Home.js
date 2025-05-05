@@ -14,13 +14,15 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleNewTweet = () => {
-    console.log(user.id);
+    const textHastag = inputText.match(/#[\wÀ-ÿ]+/g);
+
     fetch("https://hackatweet-backend-two-gamma.vercel.app/tweets/postTweet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: user.username,
         message: inputText,
+        hashtag: textHastag,
         user_id: user.id,
         like: 0,
       }),
@@ -28,7 +30,7 @@ function Home() {
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
-          console.log(data);
+          setInputText("");
         } else {
           setErrorMessage(data.error);
         }

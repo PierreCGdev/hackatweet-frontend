@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTweets } from "../reducers/tweets";
 function LastTweets() {
   const dispatch = useDispatch();
-  const hashtags = useSelector((state) => state.hashtags.value);
+  const hashtag = useSelector((state) => state.hashtag.value);
   const tweetse = useSelector((state) => state.tweets.value);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,7 +18,6 @@ function LastTweets() {
               data,
             })
           );
-          console.log(data.tweets);
         } else {
           setErrorMessage(data.error);
         }
@@ -54,10 +53,10 @@ function LastTweets() {
 
   //permet de filter ou nom avec un prop hastag
   let tweetList;
-  if (hashtags) {
+  if (hashtag) {
     const filterTweets = tweets.filter((tweet) =>
       tweet.hastag.some((tag) =>
-        tag.toLowerCase().includes(hashtags.toLowerCase())
+        tag.toLowerCase().includes(hashtag.toLowerCase())
       )
     );
     tweetList = filterTweets.map((item, index) => (

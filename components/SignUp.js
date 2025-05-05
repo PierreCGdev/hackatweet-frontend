@@ -34,7 +34,6 @@ function SignUp({ handleClickShowSignup }) {
           );
           router.push("/home");
         } else {
-          console.log(data.error);
           setErrorMessage(data.error);
         }
       });

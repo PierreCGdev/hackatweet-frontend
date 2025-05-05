@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 function Tweet(props) {
   const router = useRouter();
   const dispatch = useDispatch();
-  const hashtags = useSelector((state) => state.hashtags.value);
+  const hashtag = useSelector((state) => state.hashtag.value);
   const user = useSelector((state) => state.user.value);
   const [islike, setIslike] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes);

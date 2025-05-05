@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setHashtag } from "../reducers/hashtags.js";
 
 function Home() {
-  const hashtags = useSelector((state) => state.hashtags.value);
+  const hashtag = useSelector((state) => state.hashtag.value);
   const dispatch = useDispatch();
 
   return (
@@ -23,7 +23,7 @@ function Home() {
                   const newValue = e.target.value;
                   dispatch(setHashtag(newValue));
                 }}
-                value={hashtags}
+                value={hashtag}
               ></input>
             </div>
           </div>
