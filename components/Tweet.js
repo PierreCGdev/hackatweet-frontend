@@ -67,7 +67,8 @@ function Tweet(props) {
         <span className={styles.firstnameText}>{props.firstname}</span>
         <span
           className={styles.usernameText}
-        >{`#${props.username} - ${props.date}`}</span>
+          style={{ marginLeft: "5px" }}
+        >{`#${props.username} • ${props.date}`}</span>
       </div>
       <p style={{ margin: "15px 0px" }}>{hastageToUpper}</p>
       <span>
