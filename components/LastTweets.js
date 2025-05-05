@@ -32,7 +32,9 @@ function LastTweets({ hastag }) {
   let tweetList;
   if (hastag) {
     const filterTweets = tweets.filter((tweet) =>
-      tweet.hastag.some((tag) => hastag.includes(tag))
+      tweet.hastag.some((tag) =>
+        tag.toLowerCase().includes(hastag.toLowerCase())
+      )
     );
     tweetList = filterTweets.map((item, index) => (
       <Tweet {...item} key={index} />
@@ -40,6 +42,11 @@ function LastTweets({ hastag }) {
   } else {
     tweetList = tweets.map((item, index) => <Tweet {...item} key={index} />);
   }
+
+  tweetList.length < 1 &&
+    (tweetList = (
+      <p style={{ marginLeft: "15px" }}>No tweets found with #hashtagname</p>
+    ));
 
   return (
     <div

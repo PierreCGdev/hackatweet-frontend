@@ -3,7 +3,7 @@ import Login from "../components/Login";
 import Hashtag from "../components/Hashtag";
 
 function Index() {
-  return <Login />;
+  return <Hashtag />;
 }
 
 export default Index;
