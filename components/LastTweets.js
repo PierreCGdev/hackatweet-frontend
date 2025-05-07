@@ -35,17 +35,17 @@ function LastTweets(props) {
     } else {
       tweetList = tweets.map((item, index) => <Tweet {...item} key={index} />);
     }
+    tweetList.reverse();
   } else {
     tweetList = (
       <p style={{ marginLeft: "15px" }}>No tweets found with #hashtagname</p>
     );
   }
-
   return (
     <div
       style={{ overflowY: "auto", maxHeight: "80vh", scrollMarginBlock: "0" }}
     >
-      {[...tweetList].reverse()}
+      {tweetList}
     </div>
   );
 }
