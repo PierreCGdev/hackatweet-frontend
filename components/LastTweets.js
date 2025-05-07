@@ -45,7 +45,7 @@ function LastTweets(props) {
     <div
       style={{ overflowY: "auto", maxHeight: "80vh", scrollMarginBlock: "0" }}
     >
-      {tweetList.reverse()}
+      {[...tweetList].reverse()}
     </div>
   );
 }
