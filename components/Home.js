@@ -2,16 +2,46 @@ import styles from "../styles/Home.module.css";
 import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import LeftContent from "./LeftContent";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setHashtagsList } from "../reducers/hashtagsList";
+import { setTweets } from "../reducers/tweets";
 
 function Home() {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
+  const tweets = useSelector((state) => state.tweets.value);
   const [inputText, setInputText] = useState("");
   const [stringLength, setStringLength] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    fetch("https://hackatweet-backend-dusky.vercel.app/trends/all")
+      .then((response) => response.json())
+      .then((data) => {
+        if (inputText === "") {
+          if (data.result) {
+            dispatch(setHashtagsList(data.trends));
+          } else {
+            setErrorMessage(data.error);
+          }
+        }
+      });
+  }, [inputText]);
+
+  useEffect(() => {
+    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/getTweets")
+      .then((response) => response.json())
+      .then((data) => {
+        if (inputText === "") {
+          if (data.result) {
+            dispatch(setTweets(data.tweets));
+          } else {
+            setErrorMessage(data.error);
+          }
+        }
+      });
+  }, [inputText]);
 
   const handleNewTweet = () => {
     const textHastag = inputText.match(/#[\wÀ-ÿ]+/g);
@@ -78,7 +108,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <LastTweets />
+        <LastTweets {...tweets} />
       </div>
 
       <Trends />

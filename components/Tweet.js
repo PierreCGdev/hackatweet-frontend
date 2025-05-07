@@ -1,7 +1,7 @@
 import styles from "../styles/Tweet.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHashtag } from "../reducers/hashtags.js";
 import { removeTweets } from "../reducers/tweets.js";
@@ -12,8 +12,13 @@ function Tweet(props) {
   const dispatch = useDispatch();
   const hashtag = useSelector((state) => state.hashtag.value);
   const user = useSelector((state) => state.user.value);
+
   const [islike, setIslike] = useState(false);
-  const [likeCount, setLikeCount] = useState(props.likes);
+  const [likeCount, setLikeCount] = useState(props.likes.length);
+
+  useEffect(() => {
+    props.likes.includes(user.id) ? setIslike(true) : setIslike(false);
+  }, []);
 
   const handleDelete = () => {
     fetch(
@@ -54,15 +59,28 @@ function Tweet(props) {
   );
 
   const handleLike = () => {
-    if (islike) {
-      setLikeCount(likeCount - 1);
-    } else {
-      setLikeCount(likeCount + 1);
-    }
-    setIslike(!islike);
+    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/like", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user.id, tweetId: props._id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result) {
+          if (data.allReadyTweet) {
+            setIslike(false);
+            setLikeCount((prevCount) => prevCount - 1);
+          } else {
+            setIslike(true);
+            setLikeCount((prevCount) => prevCount + 1);
+          }
+        } else {
+          setErrorMessage(data.error);
+        }
+      });
   };
 
-  const styleLike = islike ? { color: "#F71672" } : {};
+  // const styleLike = ;
   //prévoir handle suppression du tweet
   const trashIcon = props.user_id?.username === user.username && (
     <a className={styles.iconButton}>
@@ -93,9 +111,20 @@ function Tweet(props) {
       <p style={{ margin: "15px 0px" }}>{hastageToUpper}</p>
       <span>
         <a onClick={handleLike} className={styles.iconButton}>
-          <FontAwesomeIcon style={styleLike} icon={faHeart} />
+          <FontAwesomeIcon
+            style={islike ? { color: "#F71672" } : {}}
+            icon={faHeart}
+          />
         </a>
-        <span style={{ ...styleLike, marginLeft: "10px" }}>{likeCount}</span>
+        <span
+          style={
+            islike
+              ? { color: "#F71672", marginLeft: "10px" }
+              : { marginLeft: "10px" }
+          }
+        >
+          {likeCount}
+        </span>
         {trashIcon}
       </span>
     </div>

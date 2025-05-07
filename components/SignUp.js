@@ -15,7 +15,7 @@ function SignUp({ handleClickShowSignup }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUp = () => {
-    fetch("https://hackatweet-backend-two-gamma.vercel.app/users/signup", {
+    fetch("https://hackatweet-backend-dusky.vercel.app/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstname, username, password }),
