@@ -2,7 +2,7 @@ import Tweet from "./Tweet";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTweets } from "../reducers/tweets";
-function LastTweets(props) {
+function LastTweets() {
   const dispatch = useDispatch();
   const hashtag = useSelector((state) => state.hashtag.value);
   const tweets = useSelector((state) => state.tweets.value);
@@ -42,9 +42,10 @@ function LastTweets(props) {
     );
   }
   return (
-    <div
-      style={{ overflowY: "auto", maxHeight: "80vh", scrollMarginBlock: "0" }}
-    >
+    <div>
+      {errorMessage && (
+        <p style={{ color: "red", marginLeft: "15px" }}>{errorMessage}</p>
+      )}
       {tweetList}
     </div>
   );

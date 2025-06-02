@@ -4,6 +4,7 @@ import { logout } from "../reducers/user.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { clearHashtag } from "../reducers/hashtags";
+import Button from "./Button.js";
 
 function leftContent() {
   const router = useRouter();
@@ -46,9 +47,15 @@ function leftContent() {
             <p className={styles.usernameText}>{user.username}</p>
           </div>
         </div>
-        <button className={styles.logoutButton} onClick={handleLogout}>
-          Logout
-        </button>
+        <Button
+          color={"white"}
+          bgColor={"#0F1419"}
+          border={"white solid 1px"}
+          fontWeight={400}
+          text={"Logout"}
+          handleClick={handleLogout}
+          paddingHorizontal={25}
+        />
       </div>
     </div>
   );

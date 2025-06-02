@@ -12,12 +12,13 @@
   grid-column-end: 10;
   width: 100%;
   max-height: 100vh;
+  display: flex;
   flex-direction: column;
   border-left: solid 1px #697381;
   border-right: solid 1px #697381;
   width: 100%;
   color: white;
-  /* padding: 10px 30px ; */
+  overflow: hidden;   
 }
 
 .newTweetContainer{
@@ -27,6 +28,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.tweetsScrollable {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0; /* Important pour le scroll flex */
 }
 
 .firstnameText{

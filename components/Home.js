@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHashtagsList } from "../reducers/hashtagsList";
 import { setTweets } from "../reducers/tweets";
+import Button from "./Button";
 
 function Home() {
   const dispatch = useDispatch();
@@ -101,14 +102,23 @@ function Home() {
                 <p style={{ marginRight: "10px" }}>
                   <span>{stringLength}</span>/280
                 </p>
-                <button className={styles.btn_signup} onClick={handleNewTweet}>
-                  Tweet
-                </button>
+                <Button
+                  text={"tweet"}
+                  color={"white"}
+                  handleClick={handleNewTweet}
+                  bgColor={"#1d9bf0"}
+                  border={"none"}
+                  fontWeight={700}
+                  paddingHorizontal={25}
+                />
               </div>
             </div>
           </div>
         </div>
-        <LastTweets {...tweets} />
+
+        <div className={styles.tweetsScrollable}>
+          <LastTweets {...tweets} />
+        </div>
       </div>
 
       <Trends />

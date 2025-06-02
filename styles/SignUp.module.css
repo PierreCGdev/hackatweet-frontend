@@ -47,8 +47,6 @@
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* top: 50%; left: 50% ➜ positionne le coin supérieur gauche de .contain au centre
-    transform: translate(-50%, -50%) ➜ déplace l'élément de moitié de sa taille pour qu’il soit parfaitement centré */
 }
 
 .input {
