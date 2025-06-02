@@ -15,9 +15,9 @@ function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleSignin = () => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/users/signin", {
+    fetch(`${apiUrl}/users/signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -42,7 +42,7 @@ function Home() {
   };
 
   const handleSignUp = () => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/users/signup", {
+    fetch(`${apiUrl}/users/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstname, username, password }),

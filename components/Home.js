@@ -9,6 +9,7 @@ import { setTweets } from "../reducers/tweets";
 import Button from "./Button";
 
 function Home() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const tweets = useSelector((state) => state.tweets.value);
@@ -17,7 +18,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/trends/all")
+    fetch(`${apiUrl}/trends/all`)
       .then((response) => response.json())
       .then((data) => {
         if (inputText === "") {
@@ -31,7 +32,7 @@ function Home() {
   }, [inputText]);
 
   useEffect(() => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/getTweets")
+    fetch(`${apiUrl}/tweets/getTweets`)
       .then((response) => response.json())
       .then((data) => {
         if (inputText === "") {
@@ -47,7 +48,7 @@ function Home() {
   const handleNewTweet = () => {
     const textHastag = inputText.match(/#[\wÀ-ÿ]+/g);
 
-    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/postTweet", {
+    fetch(`${apiUrl}/tweets/postTweet`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

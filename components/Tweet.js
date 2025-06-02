@@ -12,7 +12,7 @@ function Tweet(props) {
   const dispatch = useDispatch();
   const hashtag = useSelector((state) => state.hashtag.value);
   const user = useSelector((state) => state.user.value);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [islike, setIslike] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes.length);
 
@@ -21,12 +21,9 @@ function Tweet(props) {
   }, []);
 
   const handleDelete = () => {
-    fetch(
-      `https://hackatweet-backend-dusky.vercel.app/tweets/deleteTweet/${props._id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`${apiUrl}/tweets/deleteTweet/${props._id}`, {
+      method: "DELETE",
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
@@ -59,7 +56,7 @@ function Tweet(props) {
   );
 
   const handleLike = () => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/like", {
+    fetch(`${apiUrl}/tweets/like`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user.id, tweetId: props._id }),

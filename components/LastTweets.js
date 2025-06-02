@@ -7,8 +7,9 @@ function LastTweets() {
   const hashtag = useSelector((state) => state.hashtag.value);
   const tweets = useSelector((state) => state.tweets.value);
   const [errorMessage, setErrorMessage] = useState("");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
-    fetch("https://hackatweet-backend-dusky.vercel.app/tweets/getTweets")
+    fetch(`${apiUrl}/tweets/getTweets`)
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
