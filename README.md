@@ -10,4 +10,3 @@ FontAwesome (icônes)
 Backend
 Node.js + Express
 MongoDB avec Mongoose
-CORS, Body-parser
